@@ -28,7 +28,7 @@ class PinataController {
         }
       );
       responseStatus(res, 200, "success", {
-        IpfsHash: `https://ipfs.io/ipfs/${pinataResponse.data.IpfsHash}`,
+        IpfsHash: pinataResponse.data.IpfsHash,
       });
     } catch (error) {
       responseStatus(res, 500, "error", {
