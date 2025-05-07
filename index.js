@@ -11,6 +11,6 @@ router(app);
 app.listen(3000, () => {
   console.log(
     "\x1b[32m%s\x1b[0m",
-    `Server running at http://localhost:${PORT}`
+    `Server running at http://localhost:${PORT || 3030}`
   );
 });
