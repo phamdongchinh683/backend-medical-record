@@ -1,7 +1,9 @@
 const multer = require("multer");
 const cloudinaryController = require("../controllers/Cloudinary");
+const pinataController = require("../controllers/Pinata");
 const upload = multer({ dest: "uploads/" });
 const uploadPDF = require("../middlewares/upload.middleware");
+
 function router(app) {
   app.post(
     "/api/v1/upload",
@@ -10,9 +12,12 @@ function router(app) {
     cloudinaryController.uploadImage
   );
 
-  app.get("/", (req, res) => {
-    res.send("Hello API");
-  });
+  app.post(
+    "/api/v2/upload-to-ipfs",
+    upload.single("file"),
+    uploadPDF,
+    pinataController.uploadFileToPinata
+  );
 }
 
 module.exports = router;

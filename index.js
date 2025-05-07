@@ -5,6 +5,8 @@ const cors = require("cors");
 const { PORT } = require("./src/global/secretKey");
 const corsOptions = require("./src/configs/cors.config");
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 router(app);
 
