@@ -8,10 +8,11 @@ const _cloudinaryFolder = process.env.CLOUDINARY_FOLDER;
 const _cloudinaryUploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
 const _pinataApiKey = process.env.PINATA_API_KEY;
 const _pinataSecretApiKey = process.env.PINATA_SECRET_API_KEY;
-
+const _dbUrl = process.env.DB_URL;
 const PORT = process.env.PORT;
 
 module.exports = {
+  _dbUrl,
   _pinataApiKey,
   _pinataSecretApiKey,
   _cloudinaryFolder,

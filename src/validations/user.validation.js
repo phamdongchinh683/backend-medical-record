@@ -1,0 +1,34 @@
+const Joi = require("joi");
+
+const userValidator = Joi.object({
+  wallet: Joi.string().required().messages({
+    "string.base": "Wallet must be a string",
+    "any.required": "Wallet is required",
+  }),
+
+  name: Joi.string().optional().messages({
+    "string.base": "Name must be a string",
+  }),
+
+  role: Joi.string().valid("patient", "doctor").required().messages({
+    "string.base": "Role must be a string",
+    "any.required": "Role is required",
+    "any.only": 'Role must be either "patient" or "doctor"',
+  }),
+
+  nationalId: Joi.string().optional().messages({
+    "string.base": "National ID must be a string",
+  }),
+
+  phone: Joi.string().required().messages({
+    "string.base": "Phone must be a string",
+    "any.required": "Phone number is required",
+  }),
+
+  email: Joi.string().email().required().messages({
+    "string.email": "Email must be a valid email address",
+    "any.required": "Email is required",
+  }),
+});
+
+module.exports = userValidator;
