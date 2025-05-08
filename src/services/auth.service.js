@@ -12,18 +12,17 @@ class AuthService {
       email: data.email,
     });
 
-    console.log(insertUser);
     if (insertUser) {
       return responseStatus(res, 200, "success", "Signup successful");
     }
   }
 
-  async findPatientById(id) {
+  async findUserByNationalId(id) {
     const patient = await userModel.findOne({ nationalId: id });
     if (!patient) {
-      return responseStatus(res, 404, "error", "Patient not found");
+      return responseStatus(res, 404, "error", "user not found");
     }
-    return responseStatus(res, 200, "success", patient);
+    return responseStatus(res, 200, "success", patient.wallet);
   }
 }
 

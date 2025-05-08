@@ -15,6 +15,12 @@ function router(app) {
 
   app.post("/api/v1/register", validateUserData, AuthController.register);
 
+  app.get(
+    "/api/v1/user/:id",
+    validateUserData,
+    AuthController.findUserByNationalId
+  );
+
   app.post(
     "/api/v2/upload-to-ipfs",
     upload.single("file"),

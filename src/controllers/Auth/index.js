@@ -10,7 +10,7 @@ class AuthController {
     }
   }
 
-  async findPatientByNationalId(req, res) {
+  async findUserByNationalId(req, res) {
     try {
       const { id } = req.params;
       if (!id) {
@@ -25,7 +25,7 @@ class AuthController {
         );
       }
 
-      const patient = await authService.findPatientById(id);
+      const patient = await authService.findUserByNationalId(id);
       if (!patient) {
         return responseStatus(res, 404, "error", "Patient not found");
       }
