@@ -6,7 +6,7 @@ const userValidator = Joi.object({
     "any.required": "Wallet is required",
   }),
 
-  name: Joi.string().optional().messages({
+  fullName: Joi.string().required().messages({
     "string.base": "Name must be a string",
   }),
 
@@ -20,7 +20,7 @@ const userValidator = Joi.object({
     "string.base": "National ID must be a string",
   }),
 
-  phone: Joi.string().required().messages({
+  phone: Joi.string().min(10).required().messages({
     "string.base": "Phone must be a string",
     "any.required": "Phone number is required",
   }),

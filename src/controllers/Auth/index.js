@@ -10,6 +10,14 @@ class AuthController {
     }
   }
 
+  async getDoctor(req, res) {
+    try {
+      await authService.getDoctor(res);
+    } catch (e) {
+      responseStatus(res, 400, "error", e.message);
+    }
+  }
+
   async findUserByNationalId(req, res) {
     try {
       const { id } = req.params;
@@ -25,11 +33,7 @@ class AuthController {
         );
       }
 
-      const patient = await authService.findUserByNationalId(id, res);
-      if (!patient) {
-        return responseStatus(res, 404, "error", "Patient not found");
-      }
-      responseStatus(res, 200, "success", patient);
+      await authService.findUserByNationalId(id, res);
     } catch (e) {
       responseStatus(res, 400, "error", e.message);
     }

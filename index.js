@@ -11,11 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 router(app);
 
-app.listen(3000, () => {
-  console.log(
-    "\x1b[32m%s\x1b[0m",
-    `Server running at http://localhost:${PORT || 3030}`
-  );
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT || 3030}`);
 });
 
 connectDB();
