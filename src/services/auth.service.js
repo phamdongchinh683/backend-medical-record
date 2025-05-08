@@ -17,7 +17,7 @@ class AuthService {
     }
   }
 
-  async findUserByNationalId(id) {
+  async findUserByNationalId(id, res) {
     const patient = await userModel.findOne({ nationalId: id });
     if (!patient) {
       return responseStatus(res, 404, "error", "user not found");

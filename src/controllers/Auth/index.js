@@ -25,7 +25,7 @@ class AuthController {
         );
       }
 
-      const patient = await authService.findUserByNationalId(id);
+      const patient = await authService.findUserByNationalId(id, res);
       if (!patient) {
         return responseStatus(res, 404, "error", "Patient not found");
       }

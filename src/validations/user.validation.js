@@ -16,7 +16,7 @@ const userValidator = Joi.object({
     "any.only": 'Role must be either "patient" or "doctor"',
   }),
 
-  nationalId: Joi.string().optional().messages({
+  nationalId: Joi.string().min(12).optional().messages({
     "string.base": "National ID must be a string",
   }),
 
