@@ -53,6 +53,14 @@ class AuthService {
     }
     return responseStatus(res, 200, "success", result);
   }
+
+  async findUserByWallet(wallet, res) {
+    const user = await userModel.findOne({ wallet: wallet });
+    if (!user) {
+      return responseStatus(res, 404, "failed", "user not found");
+    }
+    return responseStatus(res, 200, "success", user);
+  }
 }
 
 module.exports = new AuthService();

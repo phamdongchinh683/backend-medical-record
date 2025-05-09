@@ -29,6 +29,8 @@ function router(app) {
     uploadPDF,
     pinataController.uploadFileToPinata
   );
+
+  app.get("/api/v1/user/:wallet", AuthController.findUserByWallet);
 }
 
 module.exports = router;
