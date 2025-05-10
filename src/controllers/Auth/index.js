@@ -10,9 +10,10 @@ class AuthController {
     }
   }
 
-  async getDoctor(req, res) {
+  async signIn(req, res) {
+    const { wallet } = req.body;
     try {
-      await authService.getDoctor(res);
+      await authService.signInAccount(wallet, res);
     } catch (e) {
       responseStatus(res, 400, "failed", e.message);
     }
@@ -20,11 +21,11 @@ class AuthController {
 
   async findUserByNationalId(req, res) {
     try {
-      const { id } = req.params;
-      if (!id) {
+      const { nationalId } = req.params;
+      if (!nationalId) {
         return responseStatus(res, 400, "failed", "National ID is required");
       }
-      if (id.length < 10) {
+      if (nationalId.length < 10) {
         return responseStatus(
           res,
           400,
@@ -33,15 +34,15 @@ class AuthController {
         );
       }
 
-      await authService.findUserByNationalId(id, res);
+      await authService.findUserByNationalId(nationalId, res);
     } catch (e) {
       responseStatus(res, 400, "failed", e.message);
     }
   }
 
   async findUserByWallet(req, res) {
+    const { wallet } = req.params;
     try {
-      const { wallet } = req.params.wallet;
       if (!wallet) {
         return responseStatus(res, 400, "failed", "Wallet is required");
       }
@@ -53,7 +54,6 @@ class AuthController {
           "Wallet must be at least 20 characters"
         );
       }
-
       await authService.findUserByWallet(wallet, res);
     } catch (e) {
       responseStatus(res, 400, "failed", e.message);

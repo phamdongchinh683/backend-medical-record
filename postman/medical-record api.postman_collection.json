@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "6f03e10b-09f2-4802-8430-1bac6385e2e9",
+		"name": "medical-record api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27382888",
+		"_collection_link": "https://dark-spaceship-566068.postman.co/workspace/Team-Workspace~c5cfe44e-abe1-44e5-8e5a-1006bb6f4ab3/collection/27382888-6f03e10b-09f2-4802-8430-1bac6385e2e9?action=share&source=collection_link&creator=27382888"
+	},
+	"item": [
+		{
+			"name": "patient",
+			"item": [
+				{
+					"name": "upload to ipfs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InJvbGVzIjpbImRvY3RvciIsInBhdGllbnQiXX0sImlhdCI6MTc0Njg0NzU1NCwiZXhwIjoxNzQ2OTMzOTU0fQ.FF3PNgIta-vJ22SLzJIjaX0Ez_ngoC3aEWAfnf20lYo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/mac/Downloads/Thư ứng tuyển.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/patient/upload-to-ipfs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"patient",
+								"upload-to-ipfs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get doctor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InJvbGVzIjpbImRvY3RvciIsInBhdGllbnQiXX0sImlhdCI6MTc0NjkwMTEwMSwiZXhwIjoxNzQ2OTg3NTAxfQ.HhSLHYy468hVv_ldGq8qe4Ru3jcR9-itvNjwh8_5CtE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/patient/doctors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"patient",
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail doctor by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InJvbGVzIjpbImRvY3RvciIsInBhdGllbnQiXX0sImlhdCI6MTc0NjkwMTEwMSwiZXhwIjoxNzQ2OTg3NTAxfQ.HhSLHYy468hVv_ldGq8qe4Ru3jcR9-itvNjwh8_5CtE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/patient/doctor/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"patient",
+								"doctor",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "681cb93a57a3b9c81e5b30ac"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "doctor",
+			"item": [
+				{
+					"name": "patients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InJvbGVzIjpbImRvY3RvciIsInBhdGllbnQiXX0sImlhdCI6MTc0NjkwMzg0NywiZXhwIjoxNzQ2OTkwMjQ3fQ.Sh_sUO4l1LZhxGU8M5iBI21wLBuovKLRaL8D33FiyEM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/doctor/patients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"doctor",
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patient by nationalId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InJvbGVzIjpbImRvY3RvciIsInBhdGllbnQiXX0sImlhdCI6MTc0NjkwMjQzNiwiZXhwIjoxNzQ2OTg4ODM2fQ.lY9yvR_IfeOPNRZFYM3YDM5qbTpsAySNzcjCUEZ8IvA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/doctor/patient/national-id/:nationalId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"doctor",
+								"patient",
+								"national-id",
+								":nationalId"
+							],
+							"variable": [
+								{
+									"key": "nationalId",
+									"value": "0347653564212"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail patient",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InJvbGVzIjpbImRvY3RvciIsInBhdGllbnQiXX0sImlhdCI6MTc0NjkwMjQzNiwiZXhwIjoxNzQ2OTg4ODM2fQ.lY9yvR_IfeOPNRZFYM3YDM5qbTpsAySNzcjCUEZ8IvA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/doctor/patient/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"doctor",
+								"patient",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "681cb93a57a3b9c81e5b30ab"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "wallet",
+							"value": "0x80475d8CA5C95F3CCF6dB1CB261b0CAdb04cDB",
+							"type": "text"
+						},
+						{
+							"key": "fullName",
+							"value": "Pham Dong Chinh",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "doctor",
+							"type": "text"
+						},
+						{
+							"key": "nationalId",
+							"value": "03412312487556",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "phamdongchinh789@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "0772573344",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login with wallet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "wallet",
+							"value": "0x80475d8CA5C95F3CCF6dB1CB261b0CAdb04cDBe8",
+							"description": "0x80475d8CA5C95F3CCF6dB1CB261b0CAdb04cDBe7",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"description": "0x80475d8CA5C95F3CCF6dB1CB261b0CAdb04cDBe8",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/auth/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
