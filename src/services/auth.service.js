@@ -19,8 +19,10 @@ class AuthService {
           `Role '${data.role}' already exists for this wallet`
         );
       }
-      exitRoleWallet.role.push(data.role);
-      await exitRoleWallet.save();
+       await userModel.updateOne(
+        { wallet: data.wallet },
+        { $push: { role: data.role } }
+      );
       return responseStatus(
         res,
         200,
