@@ -148,7 +148,6 @@ const initSocket = (app) => {
     });
   });
 
-  const PORT = PORT || 3000;
   httpServer.listen(PORT);
   console.log(`Socket server listening on port ${PORT}`);
 };
