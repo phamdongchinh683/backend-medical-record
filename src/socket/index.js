@@ -5,6 +5,7 @@ const socketMiddleware = require("../middlewares/socket.middleware");
 const { responseStatusSocket } = require("../global/response");
 const RequestService = require("../services/request.service");
 const notificationService = require("../services/notification.service");
+const { PORT } = require("../global/secretKey");
 require("dotenv").config();
 
 const initSocket = (app) => {
@@ -147,7 +148,7 @@ const initSocket = (app) => {
     });
   });
 
-  const PORT = process.env.SOCKET_URL || 3000;
+  const PORT = PORT || 3000;
   httpServer.listen(PORT);
   console.log(`Socket server listening on port ${PORT}`);
 };
