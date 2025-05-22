@@ -3,6 +3,7 @@ const { responseStatus } = require("../global/response");
 const { verifyToken } = require("../utils/verifyToken");
 const { _tokenSecret } = require("../global/secretKey");
 const WalletValidation = require("../validations/wallet.validation");
+const authService = require("../services/auth.service");
 const validateUserData = async (req, res, next) => {
   try {
     const value = await userValidator.validateAsync(req.body, {
@@ -35,6 +36,15 @@ const authorization = async (req, res, next) => {
   } catch (error) {
     return responseStatus(res, 403, "failed", "Failed to authenticate token.");
   }
+};
+
+const validateOTP = async (req, res, next) => {
+  const { otp, wallet } = req.body;
+  let verifyOTP = await authService.verifyOTP(otp);
+  if (!verifyOTP) {
+    return responseStatus(res, 400, "failed", "OTP is required");
+  }
+  next();
 };
 
 const validateWallet = async (req, res, next) => {

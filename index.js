@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const { PORT } = require("./src/global/secretKey");
 const corsOptions = require("./src/configs/cors.config");
 const connectDB = require("./src/configs/mongo.config");
+const initSocket = require("./src/socket");
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("combined"));
 router(app);
+initSocket(app);
 
 const startServer = async () => {
   try {

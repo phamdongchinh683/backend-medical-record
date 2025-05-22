@@ -20,5 +20,17 @@ class PatientController {
       responseStatus(res, 400, "failed", e.message);
     }
   }
+
+  async getDoctorRequest(req, res) {
+    const { id } = req.params;
+    if (!id) {
+      return responseStatus(res, 400, "failed", "Patient ID is required");
+    }
+    try {
+      await authService.getDoctorRequest(id, res);
+    } catch (e) {
+      responseStatus(res, 400, "failed", e.message);
+    }
+  }
 }
 module.exports = new PatientController();

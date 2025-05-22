@@ -13,8 +13,19 @@ const PORT = process.env.PORT;
 const _tokenSecret = process.env.TOKEN_SECRET;
 const _tokenLife = process.env.TOKEN_LIFE;
 const _pinataApiUrl = process.env.PINATA_API_URL;
-
+const _emailUser = process.env.EMAIL_USER;
+const _emailPass = process.env.EMAIL_PASS;
+const _emailSender = process.env.EMAIL_SENDER;
+const _socketOrigin = process.env.SOCKET_ORIGIN;
+const _corsOrigin = process.env.CORS_ORIGIN;
+const _socketUrl = process.env.SOCKET_URL;
 module.exports = {
+  _socketUrl,
+  _socketOrigin,
+  _corsOrigin,
+  _emailUser,
+  _emailPass,
+  _emailSender,
   _dbUrl,
   _pinataApiUrl,
   _tokenSecret,

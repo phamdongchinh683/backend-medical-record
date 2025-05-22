@@ -1,8 +1,8 @@
 const { responseStatus } = require("../global/response");
 const { _tokenSecret, _tokenLife } = require("../global/secretKey");
+const otpModel = require("../models/otp.model");
 const userModel = require("../models/user.model");
 const { generateToken } = require("../utils/generateToken");
-const WalletValidation = require("../validations/wallet.validation");
 class AuthService {
   async insert(data, res) {
     let exitRoleWallet = await userModel
@@ -19,7 +19,8 @@ class AuthService {
           `Role '${data.role}' already exists for this wallet`
         );
       }
-       await userModel.updateOne(
+
+      await userModel.updateOne(
         { wallet: data.wallet },
         { $push: { role: data.role } }
       );
@@ -72,6 +73,7 @@ class AuthService {
       .findOne({ _id: id, role: "doctor" })
       .lean()
       .exec();
+
     if (!result) {
       return responseStatus(res, 400, "failed", "Currently no doctor");
     }
@@ -99,8 +101,25 @@ class AuthService {
         "User not found, please register"
       );
     }
+    // let createOtp = generateOTP();
 
-    let data = { roles: user.role };
+    // let insertOtp = await otpModel.create({
+    //   otp: createOtp,
+    //   wallet: wallet,
+    // });
+
+    // if (insertOtp) {
+    //   let sendEmail = await emailService.sendEmail(user.email, createOtp);
+    //   console.log(sendEmail);
+    //   return responseStatus(
+    //     res,
+    //     200,
+    //     "success",
+    //     `Please check your email ${user.email}`
+    //   );
+    // }
+
+    let data = { roles: user.role, id: user._id };
     let accessToken = await generateToken(data, _tokenSecret, _tokenLife);
     return responseStatus(res, 200, "success", {
       token: accessToken,
@@ -127,6 +146,14 @@ class AuthService {
       return responseStatus(res, 400, "failed", "Currently no patient");
     }
     return responseStatus(res, 200, "success", result);
+  }
+
+  async verifyOTP(otp, wallet, res) {
+    let checkOtp = await otpModel.findOne({ otp: otp }).lean().exec();
+    if (!checkOtp) {
+      return responseStatus(res, 400, "failed", "OTP is invalid");
+    }
+    return responseStatus(res, 200, "success", otp);
   }
 }
 
