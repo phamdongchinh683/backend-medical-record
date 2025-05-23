@@ -18,5 +18,6 @@ router.post(
   uploadPDF,
   pinataController.uploadFileToPinata
 );
+router.get("/requests", authController.getAllRequests)
 
 module.exports = router;

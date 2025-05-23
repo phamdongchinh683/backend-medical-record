@@ -1,5 +1,6 @@
 const { responseStatus } = require("../../global/response");
 const authService = require("../../services/auth.service");
+const requestService = require("../../services/request.service");
 
 class AuthController {
   async register(req, res) {
@@ -55,6 +56,19 @@ class AuthController {
         );
       }
       await authService.findUserByWallet(wallet, res);
+    } catch (e) {
+      responseStatus(res, 400, "failed", e.message);
+    }
+  }
+
+  async getAllRequests(req, res) {
+    try {
+      let reqList = await requestService.getAllRequestsByPatientId(req.user.id);
+      if (reqList.length > 0) {
+        responseStatus(res, 200, "success", reqList);
+      } else {
+        responseStatus(res, 400, "failed", "Empty request");
+      }
     } catch (e) {
       responseStatus(res, 400, "failed", e.message);
     }

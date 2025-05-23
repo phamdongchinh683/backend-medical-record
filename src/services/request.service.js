@@ -15,7 +15,19 @@ class RequestService {
   }
 
   async updateRequest(requestId, status) {
-    return this.requestModel.findByIdAndUpdate(requestId, { status });
+    return this.requestModel
+      .findByIdAndUpdate(requestId, { status })
+      .lean()
+      .exec();
+  }
+
+  async getAllRequestsByPatientId(id) {
+    return this.requestModel
+      .find({ status: false, patientId: id })
+      .populate("doctorId", "wallet _id fullName")
+      .select("-patientId")
+      .lean()
+      .exec();
   }
 }
 

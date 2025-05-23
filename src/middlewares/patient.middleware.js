@@ -6,6 +6,7 @@ class PatientMiddleware {
     if (!roles.includes("patient")) {
       return responseStatus(res, 401, "failed", "Only patients can access this resource");
     }
+    console.log(req.user)
     next();
   }
 }

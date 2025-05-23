@@ -30,6 +30,7 @@ const authorization = async (req, res, next) => {
     }
     const payload = {
       roles: verified.payload.roles,
+      id: verified.payload.id,
     };
     req.user = payload;
     next();
