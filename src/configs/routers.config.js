@@ -3,7 +3,7 @@ const router = Router();
 const authRouters = require('../routers/auth');
 const patientRoutes = require('../routers/patient');
 const doctorRoutes = require('../routers/doctor');
-
+const publicRoutes = require('../routers/public');
 const API_PREFIX = '/api/v1';
 
 const routes = [
@@ -18,6 +18,10 @@ const routes = [
     {
         path: `${API_PREFIX}/doctor`,
         routes: doctorRoutes
+    },
+    {
+        path: `${API_PREFIX}/public`,
+        routes: publicRoutes
     }
 ];
 
