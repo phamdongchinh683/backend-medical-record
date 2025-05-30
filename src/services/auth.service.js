@@ -92,7 +92,7 @@ class AuthService {
   }
 
   async signInAccount(wallet, res) {
-    let user = await userModel.findOne({ wallet: wallet }).lean().exec();
+    let user = await userModel.findOne({ wallet }).lean().exec();
     if (!user) {
       return responseStatus(
         res,
@@ -101,24 +101,7 @@ class AuthService {
         "User not found, please register"
       );
     }
-    // let createOtp = generateOTP();
-
-    // let insertOtp = await otpModel.create({
-    //   otp: createOtp,
-    //   wallet: wallet,
-    // });
-
-    // if (insertOtp) {
-    //   let sendEmail = await emailService.sendEmail(user.email, createOtp);
-    //   console.log(sendEmail);
-    //   return responseStatus(
-    //     res,
-    //     200,
-    //     "success",
-    //     `Please check your email ${user.email}`
-    //   );
-    // }
-
+    
     let data = { roles: user.role, id: user._id };
     let accessToken = await generateToken(data, _tokenSecret, _tokenLife);
     return responseStatus(res, 200, "success", {
